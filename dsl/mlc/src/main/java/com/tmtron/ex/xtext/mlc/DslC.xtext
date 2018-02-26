@@ -1,6 +1,6 @@
 grammar com.tmtron.ex.xtext.mlc.DslC with org.eclipse.xtext.common.Terminals
 
-generate dslA "http://www.tmtron.com/ex/xtext/mlc/DslC"
+generate dslC "http://www.tmtron.com/ex/xtext/mlc/DslC"
 
 Model:
 	greetings+=Greeting*;
