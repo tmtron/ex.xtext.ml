@@ -24,6 +24,8 @@ class DslCJvmModelInferrer extends AbstractModelInferrer {
 	@Inject extension JvmTypesBuilder jvmTypesBuilder
  
 	def dispatch void infer(ModelC model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+		println(this.class.simpleName+' isPreIndexingPhase='+isPreIndexingPhase)
+		
 		val package = if (model.name !== null) model.name + '.' else ''
 		val classname = package + 'ModelC'
 		
