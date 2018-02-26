@@ -1,0 +1,21 @@
+apply plugin: 'org.xtext.builder'
+
+dependencies {
+    compile project(':demoA')
+    xtextLanguages 'com.tmtron.ex.xtext.mlb:mlb:1.0.0-SNAPSHOT'
+}
+
+// we must also export the model because the other project/s will refer to it
+sourceSets.main.resources.srcDirs += ["src/main/java"]
+
+xtext {
+    version = "$xtextVersion"
+    languages {
+        dslb {
+            setup = 'com.tmtron.ex.xtext.mlb.DslBStandaloneSetup'
+            generator {
+                outlet.producesJava = true
+            }
+        }
+    }
+}

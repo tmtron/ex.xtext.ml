@@ -1,0 +1,6 @@
+package com.tmtron.ex.dslb
+
+import com.tmtron.ex.dsla.*
+
+def fieldB: String;
+ref fieldA;

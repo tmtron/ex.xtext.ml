@@ -1,0 +1,37 @@
+buildscript {
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		/* xtext-gradle-plugin
+		 * https://plugins.gradle.org/plugin/org.xtext.builder
+		 */
+		classpath 'org.xtext:xtext-gradle-plugin:1.0.20'
+	}
+}
+
+allprojects {
+	repositories {
+		// needed because we install the xtext-dsl artifacts there
+		mavenLocal()
+	}
+}
+
+subprojects {
+	ext.xtextVersion = '2.13.0'
+	repositories {
+		jcenter()
+	}
+	
+	apply plugin: 'java'
+	apply plugin: 'maven'
+	
+	version = '1.0.0-SNAPSHOT'
+	
+	sourceCompatibility = '1.8'
+	targetCompatibility = '1.8'
+	
+	configurations.all {
+		exclude group: 'asm'
+	}
+}

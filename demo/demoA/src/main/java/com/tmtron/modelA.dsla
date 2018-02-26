@@ -1,0 +1,3 @@
+package com.tmtron.ex.dsla
+
+def fieldA: Long;

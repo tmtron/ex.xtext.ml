@@ -1,0 +1,18 @@
+apply plugin: 'org.xtext.builder'
+
+dependencies {
+    compile project(':demoB')
+    xtextLanguages 'com.tmtron.ex.xtext.mlc:mlc:1.0.0-SNAPSHOT'
+}
+
+xtext {
+    version = "$xtextVersion"
+    languages {
+        dslc {
+            setup = 'com.tmtron.ex.xtext.mlc.DslCStandaloneSetup'
+            generator {
+                outlet.producesJava = true
+            }
+        }
+    }
+}

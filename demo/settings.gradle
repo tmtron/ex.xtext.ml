@@ -1,0 +1,3 @@
+include 'demoA'
+include 'demoB'
+include 'demoC'

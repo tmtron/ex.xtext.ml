@@ -11,7 +11,7 @@ jdk:
 # make gradlew executable: see http://stackoverflow.com/a/33820642/6287240
 before_install:
  - chmod +x dsl/gradlew
-# TODO - cd demo && chmod +x gradlew
+ - chmod +x demo/gradlew
 
 # see https://docs.travis-ci.com/user/languages/java/
 before_cache:
@@ -28,4 +28,4 @@ install: true
 # see https://docs.travis-ci.com/user/customizing-the-build/#Customizing-the-Build-Step
 script:
 - cd dsl && gradle clean check build install --console plain 
-# TODO: - cd ../demo && gradle clean check build --console plain
+- cd ../demo && gradle clean check build --console plain

@@ -1,0 +1,9 @@
+package com.tmtron.ex.dslc
+
+import com.tmtron.ex.dsla.*
+import com.tmtron.ex.dslb.*
+
+
+def fieldC: Integer;
+ref fieldA;
+ref fieldB;
