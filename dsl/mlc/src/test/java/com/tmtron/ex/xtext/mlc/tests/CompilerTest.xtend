@@ -53,7 +53,7 @@ class CompilerTest {
 		]
 	}
 
-@Test
+	@Test
 	def void testReferences() {
 		resourceSet(#[
 				"modelA.dsla" -> 
@@ -94,4 +94,53 @@ class CompilerTest {
 		]
 	}
 	
+	@Test
+	def void testReferencesInDifferentPackages() {
+		resourceSet(#[
+				"modelA.dsla" -> 
+					'''
+					package com.tmtron.ex.dsla
+					def fieldA: Long;
+					''',
+				'modelB.dslb' ->
+					'''
+					package com.tmtron.ex.dslb
+					
+					import com.tmtron.ex.dsla.*
+					
+					def fieldB: String;
+					ref fieldA
+					''',
+				'modelC.dslc' ->
+					'''
+					package com.tmtron.ex.dslc
+					
+					import com.tmtron.ex.dsla.*
+					import com.tmtron.ex.dslb.*
+					
+					def fieldC: Integer;
+					ref fieldA
+					ref fieldB
+					'''					
+				])
+		.compile[
+			checkValidationErrors
+			'''
+				package com.tmtron.ex.dslc;
+				
+				@SuppressWarnings("all")
+				public class ModelC {
+				  private static Integer fieldC;
+				  
+				  private static Long fieldA;
+				  
+				  private static String fieldB;
+				}
+			'''.toString
+			.assertEquals(getGeneratedCode('com.tmtron.ex.dslc.ModelC'))
+			compiledClass
+		]
+	}
+
+
 }
