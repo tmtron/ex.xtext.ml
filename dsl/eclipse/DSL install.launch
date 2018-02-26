@@ -11,7 +11,7 @@
 </listAttribute>
 <booleanAttribute key="override_workspace_settings" value="false"/>
 <booleanAttribute key="show_console_view" value="true"/>
-<booleanAttribute key="show_execution_view" value="true"/>
+<booleanAttribute key="show_execution_view" value="false"/>
 <listAttribute key="tasks">
 <listEntry value="clean"/>
 <listEntry value="check"/>

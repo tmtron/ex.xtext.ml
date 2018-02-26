@@ -31,10 +31,10 @@ class DslBJvmModelInferrer extends AbstractModelInferrer {
 		
  		acceptor.accept(model.toClass(classname)) [
  			model.definitionsB.forEach[definition |
- 				members += DslAJvmModelInferrer.getField(definition, jvmTypesBuilder)	 
+ 				members += DslAJvmModelInferrer.getField(definition, jvmTypesBuilder, this.class.simpleName+'[definitions]')	 
  			]
  			model.references.forEach[ref |
- 				members += DslAJvmModelInferrer.getField(ref.definition, jvmTypesBuilder)
+ 				members += DslAJvmModelInferrer.getField(ref.definition, jvmTypesBuilder, this.class.simpleName+'[references]')
  			]
 		]
 	}

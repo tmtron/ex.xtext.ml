@@ -32,13 +32,14 @@ class DslAJvmModelInferrer extends AbstractModelInferrer {
 		
 		acceptor.accept(model.toClass(classname)) [
 			model.definitionsA.forEach[definition |
-				members += DslAJvmModelInferrer.getField(definition, jvmTypesBuilder)	 
+				members += DslAJvmModelInferrer.getField(definition, jvmTypesBuilder, this.class.simpleName)	 
 			]
 		]
 	}
 	
-	def static getField(DefinitionA definition, extension JvmTypesBuilder jvmTypesBuilder) {
+	def static getField(DefinitionA definition, extension JvmTypesBuilder jvmTypesBuilder, String caller) {
 		definition.toField(definition.name, definition.fieldType) [
+			println('  processing definition: '+definition.name+' from: '+caller)
 			visibility = JvmVisibility.PUBLIC
 			static = true
 		]		
