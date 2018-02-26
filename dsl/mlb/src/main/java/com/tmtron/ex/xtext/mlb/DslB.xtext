@@ -1,0 +1,9 @@
+grammar com.tmtron.ex.xtext.mlb.DslB with org.eclipse.xtext.common.Terminals
+
+generate dslA "http://www.tmtron.com/ex/xtext/mlb/DslB"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';

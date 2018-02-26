@@ -1,4 +1,4 @@
-module com.tmtron.ex.xtext.ml.GenerateDslC
+module com.tmtron.ex.xtext.mlc.GenerateDslC
 
 import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
@@ -12,6 +12,9 @@ Workflow {
 			project = StandardProjectConfig {
 				baseName = "mlc"
 				rootPath = rootPath
+				runtimeTest = {
+					enabled = true
+				}
 				mavenLayout = true
 			}
 			code = {
@@ -21,7 +24,7 @@ Workflow {
 			}
 		}
 		language = StandardLanguage {
-			name = "com.tmtron.ex.xtext.ml.DslC"
+			name = "com.tmtron.ex.xtext.mlc.DslC"
 			fileExtensions = "DslC"
 
 			serializer = {

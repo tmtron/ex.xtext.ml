@@ -23,10 +23,10 @@ dependencies {
 task generateXtextLanguage(type: JavaExec) {
 	main = 'org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher'
 	classpath = configurations.mwe2
-	inputs.file "src/main/java/com/tmtron/ex/xtext/ml/GenerateDslC.mwe2"
-	inputs.file "src/main/java/com/tmtron/ex/xtext/ml/DslC.xtext"
+	inputs.file "src/main/java/com/tmtron/ex/xtext/mlc/GenerateDslC.mwe2"
+	inputs.file "src/main/java/com/tmtron/ex/xtext/mlc/DslC.xtext"
 	outputs.dir "src/main/xtext-gen"
-	args += "src/main/java/com/tmtron/ex/xtext/ml/GenerateDslC.mwe2"
+	args += "src/main/java/com/tmtron/ex/xtext/mlc/GenerateDslC.mwe2"
 	args += "-p"
 	args += "rootPath=/${projectDir}/.."
 }
