@@ -1,9 +1,17 @@
-grammar com.tmtron.ex.xtext.mlb.DslB with org.eclipse.xtext.common.Terminals
+grammar com.tmtron.ex.xtext.mlb.DslB with com.tmtron.ex.xtext.mla.DslA 
 
-generate dslA "http://www.tmtron.com/ex/xtext/mlb/DslB"
+generate dslB "http://www.tmtron.com/ex/xtext/mlb/DslB"
 
-Model:
-	greetings+=Greeting*;
+import "http://www.tmtron.com/ex/xtext/mla/DslA" as dsla
+
+ModelB:
+	('package' name=QualifiedName)?
+	importSection=XImportSection?
+	definitionsB+=DefinitionA*
+	references+=ReferenceA*
+;
+
+ReferenceA:
+	'ref' definition=[dsla::DefinitionA]
+;
 	
-Greeting:
-	'Hello' name=ID '!';

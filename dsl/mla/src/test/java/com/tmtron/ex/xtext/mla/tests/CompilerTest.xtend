@@ -23,11 +23,11 @@ class CompilerTest {
 	@Inject extension CompilationTestHelper
 	
 	@Test
-	def void testPackageAndId() {
+	def void testSingleDefinition() {
 		'''
 		package com.tmtron.ex.dsla
 		
-		DefA fieldA: Long;
+		def fieldA: Long;
 		'''
 		.compile[
 			checkValidationErrors
@@ -35,7 +35,7 @@ class CompilerTest {
 			package com.tmtron.ex.dsla;
 			
 			@SuppressWarnings("all")
-			public class fieldA {
+			public class ModelA {
 			  private static Long fieldA;
 			}
 			'''.toString.assertEquals(singleGeneratedCode)

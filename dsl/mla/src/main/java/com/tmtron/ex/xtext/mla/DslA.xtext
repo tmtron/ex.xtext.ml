@@ -8,5 +8,5 @@ ModelA:
 	definitionsA+=DefinitionA*;
 	
 DefinitionA:
-	'DefA' name=ID ':' fieldType=JvmTypeReference ';'
+	'def' name=ID ':' fieldType=JvmTypeReference ';'
 ;
