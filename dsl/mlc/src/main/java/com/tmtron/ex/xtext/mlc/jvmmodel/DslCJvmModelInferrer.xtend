@@ -9,6 +9,7 @@ import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
 import com.tmtron.ex.xtext.mla.jvmmodel.DslAJvmModelInferrer
+import com.tmtron.ex.xtext.mla.jvmmodel.SimpleLog
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -22,19 +23,29 @@ class DslCJvmModelInferrer extends AbstractModelInferrer {
 	 * convenience API to build and initialize JVM types and their members.
 	 */
 	@Inject extension JvmTypesBuilder jvmTypesBuilder
+	val SimpleLog sl = new SimpleLog(this.class.simpleName)
  
 	def dispatch void infer(ModelC model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		println(this.class.simpleName+' isPreIndexingPhase='+isPreIndexingPhase)
+		sl.indent('infer preIndexing='+isPreIndexingPhase) [
+
+			sl.logResources(model)
 		
-		val package = if (model.name !== null) model.name + '.' else ''
-		val classname = package + 'ModelC'
-		
- 		acceptor.accept(model.toClass(classname)) [
- 			model.definitionsC.forEach[definition |
- 				members += DslAJvmModelInferrer.getField(definition, jvmTypesBuilder, this.class.simpleName+'[definitions]')	 
- 			]
- 			model.references.forEach[ref |
- 				members += DslAJvmModelInferrer.getField(ref.definition, jvmTypesBuilder, this.class.simpleName+'[references]')
+			val package = if (model.name !== null) model.name + '.' else ''
+			val classname = package + 'ModelC'
+			
+	 		acceptor.accept(model.toClass(classname)) [
+	 			sl.indent('toClass:'+classname) [
+		 			model.definitionsC.forEach[definition |
+		 				sl.indent('definitions') [
+		 					members += DslAJvmModelInferrer.getField(definition, jvmTypesBuilder, sl)
+		 				]	 
+		 			]
+		 			sl.indent('references') [
+			 			model.references.forEach[ref |
+			 				members += DslAJvmModelInferrer.getField(ref.definition, jvmTypesBuilder, sl)
+			 			]
+		 			]
+	 			]
  			]
 		]
 	}

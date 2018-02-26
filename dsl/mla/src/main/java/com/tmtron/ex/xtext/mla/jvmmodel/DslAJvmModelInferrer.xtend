@@ -23,23 +23,30 @@ class DslAJvmModelInferrer extends AbstractModelInferrer {
 	 * convenience API to build and initialize JVM types and their members.
 	 */
 	@Inject extension JvmTypesBuilder jvmTypesBuilder
+	val SimpleLog sl = new SimpleLog(this.class.simpleName)
 
 	def dispatch void infer(ModelA model, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		println(this.class.simpleName+' isPreIndexingPhase='+isPreIndexingPhase)
-		
-		val package = if (model.name !== null) model.name + '.' else ''
-		val classname = package + 'ModelA'
-		
-		acceptor.accept(model.toClass(classname)) [
-			model.definitionsA.forEach[definition |
-				members += DslAJvmModelInferrer.getField(definition, jvmTypesBuilder, this.class.simpleName)	 
+		sl.indent('infer preIndexing='+isPreIndexingPhase) [
+			sl.logResources(model)
+			
+			val package = if (model.name !== null) model.name + '.' else ''
+			val classname = package + 'ModelA'
+			
+			acceptor.accept(model.toClass(classname)) [
+				sl.indent('toClass:'+classname) [
+					model.definitionsA.forEach[definition |
+						sl.indent('definitions:'+definition.name) [
+							members += DslAJvmModelInferrer.getField(definition, jvmTypesBuilder, sl)
+						]	 
+					]
+				]
 			]
 		]
 	}
 	
-	def static getField(DefinitionA definition, extension JvmTypesBuilder jvmTypesBuilder, String caller) {
+	def static getField(DefinitionA definition, extension JvmTypesBuilder jvmTypesBuilder, SimpleLog sl) {
 		definition.toField(definition.name, definition.fieldType) [
-			println('  processing definition: '+definition.name+' from: '+caller)
+			sl.log('processing definition: '+definition.name)
 			visibility = JvmVisibility.PUBLIC
 			static = true
 		]		
