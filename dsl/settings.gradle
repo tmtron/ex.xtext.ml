@@ -1,4 +1,4 @@
-include 'com.tmtron.ex.xtext.mla'
-include 'com.tmtron.ex.xtext.mlb'
-include 'com.tmtron.ex.xtext.mlc'
+include 'mla'
+include 'mlb'
+include 'mlc'
 
