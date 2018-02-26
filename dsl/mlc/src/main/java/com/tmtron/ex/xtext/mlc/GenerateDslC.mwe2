@@ -25,7 +25,8 @@ Workflow {
 		}
 		language = StandardLanguage {
 			name = "com.tmtron.ex.xtext.mlc.DslC"
-			fileExtensions = "DslC"
+			fileExtensions = "dslc"
+			referencedResource = "platform:/resource/mlb/model/generated/DslB.genmodel"
 
 			serializer = {
 				generateStub = false

@@ -1,9 +1,10 @@
-grammar com.tmtron.ex.xtext.mlc.DslC with org.eclipse.xtext.common.Terminals
+grammar com.tmtron.ex.xtext.mlc.DslC with com.tmtron.ex.xtext.mlb.DslB
 
 generate dslC "http://www.tmtron.com/ex/xtext/mlc/DslC"
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+ModelC:
+	('package' name=QualifiedName)?
+	importSection=XImportSection?
+	definitionsC+=DefinitionA*
+	references+=ReferenceA*
+;
