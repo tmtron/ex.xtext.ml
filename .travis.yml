@@ -10,7 +10,8 @@ jdk:
 
 # make gradlew executable: see http://stackoverflow.com/a/33820642/6287240
 before_install:
- - chmod +x gradlew
+ - cd dsl && chmod +x gradlew
+# TODO - cd demo && chmod +x gradlew
 
 # see https://docs.travis-ci.com/user/languages/java/
 before_cache:
