@@ -35,20 +35,20 @@ class CompilerTest {
 	@Test
 	def void testSingleDefinition() {
 		'''
-		package com.tmtron.ex.dsla
+		package com.tmtron.ex.dsl
 		def fieldB: String;
 		'''
 		.compile[
 			checkValidationErrors
 			'''
-				package com.tmtron.ex.dsla;
+				package com.tmtron.ex.dsl;
 				
 				@SuppressWarnings("all")
 				public class ModelB {
 				  private static String fieldB;
 				}
 			'''.toString
-			.assertEquals(getGeneratedCode('com.tmtron.ex.dsla.ModelB'))
+			.assertEquals(getGeneratedCode('com.tmtron.ex.dsl.ModelB'))
 			compiledClass
 		]
 	}
@@ -58,12 +58,12 @@ class CompilerTest {
 		resourceSet(#[
 				"modelA.dsla" -> 
 					'''
-					package com.tmtron.ex.dsla
+					package com.tmtron.ex.dsl
 					def fieldA: Long;
 					''',
 				'modelB.dslb' ->
 					'''
-					package com.tmtron.ex.dsla
+					package com.tmtron.ex.dsl
 					def fieldB: String;
 					ref fieldA
 					'''
@@ -71,7 +71,7 @@ class CompilerTest {
 		.compile[
 			checkValidationErrors
 			'''
-				package com.tmtron.ex.dsla;
+				package com.tmtron.ex.dsl;
 				
 				@SuppressWarnings("all")
 				public class ModelB {
@@ -80,7 +80,42 @@ class CompilerTest {
 				  private static Long fieldA;
 				}
 			'''.toString
-			.assertEquals(getGeneratedCode('com.tmtron.ex.dsla.ModelB'))
+			.assertEquals(getGeneratedCode('com.tmtron.ex.dsl.ModelB'))
+			compiledClass
+		]
+	}
+
+	@Test
+	def void testReferencesInDifferentPackages() {
+		resourceSet(#[
+				"modelA.dsla" -> 
+					'''
+					package com.tmtron.ex.dsla
+					def fieldA: Long;
+					''',
+				'modelB.dslb' ->
+					'''
+					package com.tmtron.ex.dslb
+					
+					import com.tmtron.ex.dsla.*
+					
+					def fieldB: String;
+					ref fieldA
+					'''
+				])
+		.compile[
+			checkValidationErrors
+			'''
+				package com.tmtron.ex.dslb;
+				
+				@SuppressWarnings("all")
+				public class ModelB {
+				  private static String fieldB;
+				  
+				  private static Long fieldA;
+				}
+			'''.toString
+			.assertEquals(getGeneratedCode('com.tmtron.ex.dslb.ModelB'))
 			compiledClass
 		]
 	}

@@ -23,7 +23,7 @@ class DslBParsingTest {
 	@Inject extension ValidationTestHelper validationTester
 	
 	@Test def void simpleParsingTest() {
-		val parseResult = parseHelper.parse('def fieldA: Long;')
+		val parseResult = parseHelper.parse('def fieldB: String;')
 		assertNotNull(parseResult)
 
 		// and read the root instance
@@ -31,7 +31,7 @@ class DslBParsingTest {
 		val defA = defs.head
 		// ensure it's not null
 		assertNotNull(defA)
-		assertEquals('fieldA', defA.name)
+		assertEquals('fieldB', defA.name)
 		parseResult.assertNoErrors
 	}
 }
