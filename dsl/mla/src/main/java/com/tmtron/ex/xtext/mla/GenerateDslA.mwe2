@@ -1,4 +1,4 @@
-module com.tmtron.ex.xtext.ml.GenerateDslA
+module com.tmtron.ex.xtext.mla.GenerateDslA
 
 import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
@@ -21,7 +21,7 @@ Workflow {
 			}
 		}
 		language = StandardLanguage {
-			name = "com.tmtron.ex.xtext.ml.DslA"
+			name = "com.tmtron.ex.xtext.mla.DslA"
 			fileExtensions = "dsla"
 
 			serializer = {

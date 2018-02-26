@@ -1,6 +1,6 @@
-grammar com.tmtron.ex.xtext.ml.DslA with org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations
+grammar com.tmtron.ex.xtext.mla.DslA with org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations
 
-generate dslA "http://www.tmtron.com/ex/xtext/ml/DslA"
+generate dslA "http://www.tmtron.com/ex/xtext/mla/DslA"
 
 ModelA:
 	('package' name=QualifiedName)?
