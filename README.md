@@ -1,4 +1,4 @@
-# Testproject for Xtext with 2 Grammars
+# Testproject for Xtext with multiple grammars
 
 The repository contains multiple xtext projects:
 
