@@ -1,9 +1,12 @@
-grammar com.tmtron.ex.xtext.ml.DslA with org.eclipse.xtext.common.Terminals
+grammar com.tmtron.ex.xtext.ml.DslA with org.eclipse.xtext.xbase.annotations.XbaseWithAnnotations
 
 generate dslA "http://www.tmtron.com/ex/xtext/ml/DslA"
 
-Model:
-	greetings+=Greeting*;
+ModelA:
+	('package' name=QualifiedName)?
+	importSection=XImportSection?
+	defA+=DefinitionA*;
 	
-Greeting:
-	'Hello' name=ID '!';
+DefinitionA:
+	'DefA' name=ID ':' fieldType=JvmTypeReference ';'
+;
