@@ -36,7 +36,7 @@ class CompilerTest {
 			
 			@SuppressWarnings("all")
 			public class ModelA {
-			  private static Long fieldA;
+			  public static Long fieldA;
 			}
 			'''.toString.assertEquals(singleGeneratedCode)
 			compiledClass

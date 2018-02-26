@@ -45,7 +45,7 @@ class CompilerTest {
 				
 				@SuppressWarnings("all")
 				public class ModelB {
-				  private static String fieldB;
+				  public static String fieldB;
 				}
 			'''.toString
 			.assertEquals(getGeneratedCode('com.tmtron.ex.dsl.ModelB'))
@@ -65,7 +65,7 @@ class CompilerTest {
 					'''
 					package com.tmtron.ex.dsl
 					def fieldB: String;
-					ref fieldA
+					ref fieldA;
 					'''
 				])
 		.compile[
@@ -75,9 +75,9 @@ class CompilerTest {
 				
 				@SuppressWarnings("all")
 				public class ModelB {
-				  private static String fieldB;
+				  public static String fieldB;
 				  
-				  private static Long fieldA;
+				  public static Long fieldA;
 				}
 			'''.toString
 			.assertEquals(getGeneratedCode('com.tmtron.ex.dsl.ModelB'))
@@ -100,7 +100,7 @@ class CompilerTest {
 					import com.tmtron.ex.dsla.*
 					
 					def fieldB: String;
-					ref fieldA
+					ref fieldA;
 					'''
 				])
 		.compile[
@@ -110,9 +110,9 @@ class CompilerTest {
 				
 				@SuppressWarnings("all")
 				public class ModelB {
-				  private static String fieldB;
+				  public static String fieldB;
 				  
-				  private static Long fieldA;
+				  public static Long fieldA;
 				}
 			'''.toString
 			.assertEquals(getGeneratedCode('com.tmtron.ex.dslb.ModelB'))

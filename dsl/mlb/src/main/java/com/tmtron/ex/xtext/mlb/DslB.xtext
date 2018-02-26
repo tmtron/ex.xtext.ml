@@ -12,6 +12,6 @@ ModelB:
 ;
 
 ReferenceA:
-	'ref' definition=[dsla::DefinitionA]
+	'ref' definition=[dsla::DefinitionA]';'
 ;
 	

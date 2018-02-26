@@ -9,6 +9,7 @@ import com.tmtron.ex.xtext.mla.dslA.ModelA
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.common.types.JvmVisibility
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -36,6 +37,7 @@ class DslAJvmModelInferrer extends AbstractModelInferrer {
 	
 	def static getField(DefinitionA definition, extension JvmTypesBuilder jvmTypesBuilder) {
 		definition.toField(definition.name, definition.fieldType) [
+			visibility = JvmVisibility.PUBLIC
 			static = true
 		]		
 	}
