@@ -22,3 +22,6 @@ gradle-app.setting
 **/src-gen
 **/xtend-gen
 **/xtext-gen
+
+# eclipse
+**/bin
