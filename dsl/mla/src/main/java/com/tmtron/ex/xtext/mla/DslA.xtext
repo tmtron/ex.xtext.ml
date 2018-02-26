@@ -5,7 +5,7 @@ generate dslA "http://www.tmtron.com/ex/xtext/mla/DslA"
 ModelA:
 	('package' name=QualifiedName)?
 	importSection=XImportSection?
-	defA+=DefinitionA*;
+	definitionsA+=DefinitionA*;
 	
 DefinitionA:
 	'DefA' name=ID ':' fieldType=JvmTypeReference ';'

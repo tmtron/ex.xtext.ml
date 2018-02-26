@@ -12,6 +12,9 @@ Workflow {
 			project = StandardProjectConfig {
 				baseName = "mla"
 				rootPath = rootPath
+				runtimeTest = {
+					enabled = true
+				}
 				mavenLayout = true
 			}
 			code = {
